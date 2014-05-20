@@ -1,5 +1,8 @@
 
 $(document).ready(function(){
+
+      var randomNumber = Math.floor((Math.random()*100)+1);
+      var guessCount = 1;
 	
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
@@ -16,7 +19,6 @@ $(document).ready(function(){
   	/*---Numbers---*/
   $("#guessButton").click(function(e) {
     e.preventDefault();
-  	var randomNumber = Math.floor((Math.random()*100)+1);
   	var userNumber = parseInt($('#userGuess').val(),10);
   	var guessDifference = parseInt((randomNumber - userNumber), 10);
   	if(isNaN(userNumber)) {
@@ -31,11 +33,12 @@ $(document).ready(function(){
   		$('#feedback').text("Hot!");
   	} else if (guessDifference >=11) {
   		$('#feedback').text("Try Again!");
-
+      }
       if(userNumber != randomNumber) {
          $('#guessList').append('<li>' + userNumber +'</li>');
-    }
-  	}
+          $('#count').html(guessCount++);
+            }
+  	
          
    
     $('#userGuess').val(' ');
